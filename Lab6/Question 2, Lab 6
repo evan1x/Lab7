@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool IsSorted(int arr[], int size, int *pos) {
+    int i;
+    for(i = 0; i < size - 1; i++) {
+        if(arr[i] > arr[i + 1]) {
+            *pos = i == 0 ? 0 : i - 1;
+            return false;
+        }
+    }
+    *pos = size - 1;
+    return true;
+}
+
+int main () {
+    int arr1[5] = {5, 2, 4, 10, 11};
+    int arr2[5] = {1, 2, 4, 3, 11};
+    int arr3[5] = {1, 2, 4, 10, 11};
+    int ind;
+    
+    
+    // test 1
+    if (IsSorted(arr1, 5, &ind) == true)
+        printf("The array is sorted and pos = %d\n", ind);
+    else
+        printf("The array is not sorted and it is partially sorted up to %d\n", ind);
+        
+    // test 2
+    if (IsSorted(arr2, 5, &ind) == true)
+        printf("The array is sorted and pos = %d\n", ind);
+    else
+        printf("The array is not sorted and it is partially sorted up to %d\n", ind);
+
+    // test 3
+    if (IsSorted(arr3, 5, &ind) == true)
+        printf("The array is sorted and pos = %d\n", ind);
+    else
+        printf("The array is not sorted and it is partially sorted up to %d\n", ind);
+
+    return 0;
+}
